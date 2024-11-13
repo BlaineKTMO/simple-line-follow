@@ -25,6 +25,7 @@ setup(
             'houghman_line_transform = line_follow.houghman_line_transform:main',
             'image_to_laser = line_follow.image_to_laser:main',
             'follow_point = line_follow.follow:main',
+            'edge_detection = line_follow.line_transform:main',
         ],
     },
 )

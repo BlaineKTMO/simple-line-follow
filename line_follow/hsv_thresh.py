@@ -5,6 +5,7 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
+
 class BlueColorDetector(Node):
     def __init__(self):
         super().__init__('blue_color_detector')
@@ -35,7 +36,8 @@ class BlueColorDetector(Node):
             blue_detected = cv2.bitwise_and(cv_image, cv_image, mask=mask)
 
             # Convert the processed image to ROS Image message
-            blue_image_msg = self.bridge.cv2_to_imgmsg(blue_detected, encoding='bgr8')
+            blue_image_msg = self.bridge.cv2_to_imgmsg(blue_detected,
+                                                       encoding='bgr8')
 
             # Publish the processed image
             self.publisher_.publish(blue_image_msg)
@@ -45,6 +47,7 @@ class BlueColorDetector(Node):
             cv2.waitKey(1)
         except Exception as e:
             self.get_logger().error(f'Error processing image: {e}')
+
 
 def main(args=None):
     rclpy.init(args=args)
