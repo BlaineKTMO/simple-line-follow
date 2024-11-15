@@ -1,5 +1,4 @@
 from setuptools import find_packages, setup
-from glob import glob
 
 package_name = 'line_follow'
 
