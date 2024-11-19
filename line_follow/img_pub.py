@@ -7,9 +7,12 @@ import cv2
 class ImagePublisher(Node):
     def __init__(self):
         super().__init__('image_publisher')
+        
+        self.declare_parameter('video_source', 2)
+
         self.publisher_ = self.create_publisher(Image, 'camera/image', 10)
         self.timer = self.create_timer(0.01, self.timer_callback)  # Increase frequency
-        self.cap = cv2.VideoCapture(2)
+        self.cap = cv2.VideoCapture(self.get_parameter('video_source').get_parameter_value().integer_value)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)  # Set width
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Set height
         self.cap.set(cv2.CAP_PROP_FPS, 30)  # Set FPS
